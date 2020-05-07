@@ -1,0 +1,694 @@
+\newcommand{\bracket}[1]{\ensuremath{\left\langle #1 \right\rangle}}
+
+\newcommand{\simplematrix}[1]{\ensuremath{\begin{bmatrix} #1 \end{bmatrix}}}
+
+\newcommand{\simplevmatrixnorm}[1]{\ensuremath{\begin{vmatrix} #1\end{vmatrix}}}
+
+\newcommand{\matcov}{\ensuremath{\simplematrix{C_3}}}
+\newcommand{\matcoh}{\ensuremath{\simplematrix{T_3}}}
+\newcommand{\matscat}{\ensuremath{\simplematrix{S_2}}}
+
+
+
+
+\newcommand*\midpoint[1]{\overline{#1}}
+
+\newcommand{\tocomplex}[1]{re\{ #1 \} + \textit{\textbf{j}}  \cdot im\{ #1\}}
+
+\newcommand{\toccomplex}[1]{re\{ #1 \} - \textit{\textbf{j}} \cdot im\{ #1\}}
+
+\newcommand{\acrsar}{\textbf{\acrshort{sar}} }
+\newcommand{\acrpolsar}{\textbf{\acrshort{polsar}} }
+\newcommand{\acrconvnet}{\textbf{\acrshort{convnet}} }
+\newcommand{\acrfcn}{\textbf{\acrshort{fcn}} }
+\newcommand{\acrmlp}{\textbf{\acrshort{mlp}} }
+\newcommand{\acrcradar}{\textbf{\acrshort{radar}} }
+\newcommand{\acrcroe}{\textbf{\acrshort{oe}} }
+\newcommand{\acrrelu}{\textbf{\acrshort{relu}} }
+\newcommand{\acrboxcar}{\textbf{\acrshort{boxcar}} }
+\newcommand{\acrenl}{\textbf{\acrshort{enl}} }
+\newcommand{\itspan}{\textit{span} }
+\newcommand{\acrgpu}{\textbf{\acrshort{gpu}} }
+
+\newcommand{\acrsarns}{\textbf{\acrshort{sar}}}
+\newcommand{\acrpolsarns}{\textbf{\acrshort{polsar}}}
+\newcommand{\acrconvnetns}{\textbf{\acrshort{convnet}}}
+\newcommand{\acrfcnns}{\textbf{\acrshort{fcn}}}
+\newcommand{\acrmlpns}{\textbf{\acrshort{mlp}}}
+\newcommand{\acrcradarns}{\textbf{\acrshort{radar}}}
+\newcommand{\acrcroens}{\textbf{\acrshort{oe}}}
+\newcommand{\acrreluns}{\textbf{\acrshort{relu}}}
+\newcommand{\acrboxcarns}{\textbf{\acrshort{boxcar}}}
+\newcommand{\acrenlns}{\textbf{\acrshort{enl}}}
+\newcommand{\ts}{\textsuperscript}
+\newcommand{\itspanns}{\textit{span}}
+\newcommand{\acrgpuns}{\textbf{\acrshort{gpu}}}
+
+\newcommand{\halpha}{$H/\bar{\alpha}$ }
+\newcommand{\halphans}{$H/\bar{\alpha}$}
+\newcommand{\haalpha}{$H/A/\bar{\alpha}$ }
+\newcommand{\haalphaB}{$H/A/\bar{\alpha}$}
+\newcommand{\haalphans}{$H/A/\bar{\alpha}$}
+\newcommand{\subf}[2]{%
+  {\small\begin{tabular}[t]{@{}c@{}}
+  #1\\#2
+  \end{tabular}}%
+}
+
+\newcommand{\paulicomposition}{
+(\textcolor{red}{S_{HH}-S_{VV}}, \textcolor{green}{\sqrt{2}S_{HV}}, \textcolor{blue}{S_{HH}+S_{VV}})
+}
+
+\newcommand{\haalphacomposition}{
+(\textcolor{red}{Entropie}, \textcolor{green}{Anisotropie}, \textcolor{blue}{Angle alpha normalisé})
+}
+
+\newcommand{\trainfig}[4]{
+\begin{figure}[ht!] 
+ \includegraphics[width=0.78\textwidth]{figures/Chap4/results/#2/training/m=#3/training_curves_m=#3_p=#4_n=all.jpg}
+  \centering
+  \caption{
+  \small {\textbf{#1}: Valeur de la fonction de perte $|\epsilon(\bar y)|$ versus le nombre d'époques pour la famille des modèles $m=#3$, $p=#4$ et $n=\{3, 5, 7, 9, 11, 13, 15\}$
+  }
+  }
+    \label{fig:#2_training_curves_m=#3_p=#4_n=all}
+\end{figure}
+}
+
+\newcommand{\trainfigA}[4]{
+\begin{figure}[ht!] 
+ \includegraphics[width=0.78\textwidth]{figures/Chap4/results/#2/training/m=#3/training_curves_m=#3_p=#4_n=all.jpg}
+  \centering
+  \caption[]{
+  \small {\textbf{#1}: Valeur de la fonction de perte $|\epsilon(\bar y)|$ versus le nombre d'époques pour la famille des modèles $m=#3$, $p=#4$ et $n=\{3, 5, 7, 9, 11, 13, 15\}$
+  }
+  }
+    \label{fig:#2_training_curves_m=#3_p=#4_n=all}
+\end{figure}
+}
+
+
+\newcommand{\trainfigall}[3]{
+\begin{figure}[!htb] 
+ \includegraphics[width=1.0\textwidth]{figures/Chap4/results/#2/training/m=#3/training_curves_m=#3_p=all_n=all.jpg}
+  \centering
+  \caption{
+  \small {\textbf{#1}: Valeur de la fonction de perte $|\epsilon(\bar y)|$ versus le nombre d'époques pour la famille des modèles $m=#3$, $p=\{8, 16, 32, 64\}$ et $n=\{3, 5, 7, 9, 11, 13, 15\}$
+  }
+  }
+  \label{fig:#2_training_curves_m=#3_p=all_n=all}
+\end{figure}
+}
+
+\newcommand{\trainbestfig}[3]{
+\begin{figure}[!htb] 
+ \includegraphics[width=0.5\textwidth]{figures/Chap4/results/#2/training/m=#3/best_curves_m=#3_p=all_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#1}: Valeur de la fonction de perte $|\epsilon(\bar y)|$ du meilleur modèle sur les données de validation pour la famille des modèles $m=#3$ versus la taille des filtres de la première convolution.
+  }
+  }
+  \label{fig:#2_best_curves_m=#3_p=all_n=all}
+\end{figure}
+}
+
+\newcommand{\matcohfig}[6]{
+\begin{figure}[!htb] 
+ \includegraphics[width=1.0\textwidth]{figures/Chap4/results/#1/#2/m=#3/signatures_#4_moyenne_des_erreurs_relatives_#5_m=#3_p=#6_n=all.jpg"}
+ \centering
+  \caption{
+  \small{\textbf{#3}:
+  }
+  }
+  \label{fig:#3_best_curves_m=#2_p=#5_n=all}
+\end{figure}
+}
+
+
+\newcommand{\matcohfigstdev}[9]{
+\begin{figure}[!htb] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_ecart_type_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8 (#3).} Écart-type des erreurs relatives (\%) des filtrages en fonction de la taille (n) des filtres de la première couche convolutive pour la famille des modèles $m=#1$ et $p=#2$. }
+  }
+  \label{fig:t3_std_#9_#4_#5_#1_#6_#3_m=#1_p=#2_n=all}
+\end{figure}
+}
+\newcommand{\matcohfigavg}[9]{
+\begin{figure}[!htb] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_moyenne_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8 (#3).} Moyenne des erreurs relatives des filtrages  ($\%$) en fonction de la taille (n) des filtres de la première couche convolutive pour la famille des modèles $m=#1$ et $p=#2$. }
+  }
+  \label{fig:t3_bias_#9_#4_#5_#1_#6_#3_m=#1_p=#2_n=all}
+\end{figure}
+}
+
+
+\newcommand{\enlfigures}[5]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/enl/#4/signatures_#1_ENL_0_m=all_p=8_n=all.jpg}
+ \centering
+  \caption{
+  \small{ \textbf{#2 #3}.  Nombre équivalent de vues calculé sur les termes diagonaux de la matrice de cohérence en fonction de la taille (n) des filtres de la première couche convolutive pour la famille des modèles $m = \{0,1,3,5\}$ et $p=8$ #5.} 
+  }
+  \label{fig:enl_#1}
+\end{figure}
+}
+
+\newcommand{\enlfiguresB}[5]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/enl/#4/signatures_#1_ENL_0_m=all_p=8_n=all.jpg}
+ \centering
+  \caption{
+  \small{ \textbf{#2 #3}. Nombre équivalent de vues calculé sur les termes diagonaux de la matrice de cohérence en fonction de la taille $(n)$ des filtres de la première convolution pour la famille des modèles $m = \{0,1,3,5\}$ et $p=8$ #5.} 
+  }
+  \label{figB:enl_#1_#4}
+\end{figure}
+}
+
+%
+%#1=m
+%#2=p
+%#3=0
+%#4=homogeneous
+%#5=simulated_signatures_T3
+%#6 Anisotropic_Particles
+%#7 Anisotropic
+%#8 Particles
+%#9=homogeneous
+%
+\newcommand{\matcohfigavgall}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=all/signatures_#6_moyenne_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption[]{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la matrice de cohérence en fonction de la taille ($n$) des filtres de la première convolution pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+  \label{fig:avg_t3_#4_#9_#6}
+\end{figure}
+}
+
+\newcommand{\matcohfigavgallC}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=all/signatures_#6_moyenne_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la matrice de cohérence en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+  \label{fig:C_avg_t3_#4_#9_#6}
+\end{figure}
+}
+
+\newcommand{\matcohfigavgallB}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/simulated_signatures_T3/m=all/signatures_#6_moyenne_des_erreurs_relatives_0_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la matrice de cohérence en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$ #5 }
+  }
+  \label{figB:#3}
+\end{figure}
+}
+
+\newcommand{\matcohfigstdevall}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_ecart_type_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption[]{
+  \small{\textbf{#7 #8.} Écart-type des erreurs relatives (\%) des estimés de la matrice de cohérence en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+   \label{fig:std_t3_#4_#9_#6}
+\end{figure}
+}
+
+\newcommand{\matcohfigstdevallC}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_ecart_type_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Écart-type des erreurs relatives (\%) des estimés de la matrice de cohérence en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+   \label{fig:C_std_t3_#4_#9_#6}
+\end{figure}
+}
+
+
+\newcommand{\imagesubregionfiltered}[2]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/POLSAR/IMAGE_#1_T3_RGB_sub#2.jpg}
+ \centering
+  \caption{
+  \small{Sous région de l'image monovue de San Francisco acquise par le capteur \textbf{#1} et filtrée par le modèle vdpolsarf ($m=5$, $p=64$, $n=9$) $\paulicomposition$.
+  }}
+  \label{fig:filtered_image_sub#2_#1}
+\end{figure}
+}
+
+\newcommand{\imagesubregion}[2]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/POLSAR/IMAGE_#1_T3_RGB_noised_sub#2.jpg}
+ \centering
+  \caption{
+  \small{Sous région de l'image monovue de San Francisco acquise par le capteur \textbf{#1} $\paulicomposition$.
+  }}
+  \label{fig:_image_sub#2_#1}
+\end{figure}
+}
+
+\newcommand{\sectionmatcohresults}[6]{
+\section{Les courbes du biais relatif et de l'écart-type sur la valeurs des éléments de la matrice de cohérence: $m=#1$, $p=#2$} \label{annex-a:homogeneous_t3}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dihedral_Reflector}{Réflections}{dièdrales}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dihedral_Reflector}{Réflecteurs}{Reflector}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dipole}{Dipôles}{ }{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dipole}{Dipôles}{ }{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Bragg_Surface}{Surfaces}{de Bragg}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Bragg_Surface}{Surfaces}{de Bragg}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\matcohfigavg{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+\matcohfigstdev{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+}
+
+
+\newcommand{\matcohresultsalall}[6]{
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dihedral_Reflector}{Réflections}{dièdrales}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dihedral_Reflector}{Réflections}{dièdrales}{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dipole}{Dipôles}{ }{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Dipole}{Dipôles}{ }{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Bragg_Surface}{Surfaces}{de Bragg}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Bragg_Surface}{Surfaces}{de Bragg }{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\matcohfigavgall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+\matcohfigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_T3}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+}
+
+\newcommand{\valuepc}[2]{
+$#1 \pm #2 \%$
+}
+
+\newcommand{\haalphafigavgall}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=all/signatures_#6_moyenne_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption[]{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la décomposition \haalpha en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+  \label{fig:avg_#4_#9_bias_#6}
+\end{figure}
+}
+
+\newcommand{\haalphafigavgallB}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/simulated_signatures_haalpha/m=all/signatures_#6_moyenne_des_erreurs_relatives_0_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la décomposition \haalpha en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$ #5.}
+  }
+    \label{figB:#3}
+\end{figure}
+}
+
+\newcommand{\haalphafigavgallC}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=all/signatures_#6_moyenne_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Moyenne des erreurs relatives ($\%$) des estimés de la décomposition \haalpha en fonction de la taille ($n$) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$. }
+  }
+  \label{fig:C_avg_#4_#9_bias_#6}
+\end{figure}
+}
+
+
+
+\newcommand{\haalphafigstdevall}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_ecart_type_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption[]{
+  \small{\textbf{#7 #8.} Écart-type des erreurs relatives (\%) des estimés de la décomposition \haalpha en fonction de la taille (n) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$.}
+  }
+  \label{fig:std_#4_#9_bias_#6}
+\end{figure}
+}
+
+
+\newcommand{\haalphafigstdevallC}[9]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/#4/#9/#5/m=#1/signatures_#6_ecart_type_des_erreurs_relatives_#3_m=#1_p=#2_n=all.jpg}
+ \centering
+  \caption{
+  \small{\textbf{#7 #8.} Écart-type des erreurs relatives (\%) des estimés de la décomposition \haalpha en fonction de la taille (n) des filtres de la première couche convolutive pour la famille des modèles $m=\{0,1,3,5\}$ et $p=#2$.}
+  }
+  \label{fig:C_std_#4_#9_bias_#6}
+\end{figure}
+}
+
+\newcommand{\haalpharesultsall}[6]{
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Dihedral_Reflector}{Réflections}{dièdrales}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Dihedral_Reflector}{Réflections}{dièdrales}{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Dipole}{Dipôles}{ }{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Dipole}{Dipôles}{ }{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Bragg_Surface}{Surfaces}{de Bragg }{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Bragg_Surface}{Surfaces}{de Bragg }{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Double_Reflection}{Double}{Réflection}{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Anisotropic_Particles}{Particules}{anisotropiques}{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Random_Surface}{Surfaces}{aléatoires}{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Complex_Structures}{Structures}{complexes}{#5}{#6}
+\haalphafigavgall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+\haalphafigstdevall{#1}{#2}{#3}{#4}{simulated_signatures_haalpha}{Random_Anisotropic_Scatterers}{Diffuseurs}{anisotropiques aléatoires}{#5}{#6}
+}
+
+
+
+\newcommand{\homegeneousresults}[4]{
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[p] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\begin{turn}{90} 
+\footnotesize{image caractéristique | étiquette} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/noised/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/span/#1_0.jpg}}{}
+\\
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{VDPolSARF} ($m=5, p=8$)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/vdpolsar/m=5/p=8/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/vdpolsar/m=5/p=8/n=13/#1_0.jpg}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Boxcar}} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/boxcar/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/boxcar/n=13/#1_0.jpg}}{}
+\\
+\hline
+\end{tabular}
+\caption{
+  \small{\textbf{#2 #3.} Comparaison entre les différents filtrages - Partie 1. $\paulicomposition$ }}
+ \label{fig:filter_comparison_#1_partie_1}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[p] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Refined Lee} (11$\times$11)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/refine_lee/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/refine_lee/n=11/#1_0.jpg}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Sigma Lee}  (0.9, 3$\times$3)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/improved_lee_0.9_3x3/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/improved_lee_0.9_3x3/n=13/#1_0.jpg}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{IDAN } 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/idan/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/filters/filtered_span/idan/n=13/#1_0.jpg}}{}
+\\
+\hline
+\end{tabular}
+\caption{
+  \small{\textbf{#2 #3.} Comparaison entre les différents filtrages - Partie 2. $\paulicomposition$}}
+ \label{fig:filter_comparison_#1_partie_2}
+\end{figure}
+
+}
+
+\newcommand{\vdtrainingcompare}[5]{
+\begin{figure}[!htbp] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{Homogène} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/homogeneous/m=5/p=8/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/homogeneous/m=5/p=8/n=13/#1_0.jpg}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{Hétérogène} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/random_texture/m=5/p=8/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/random_texture/m=5/p=8/n=13/#1_0.jpg}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{Hétérogène + cibles } 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/random_texture_with_pts/m=5/p=8/n=5/#1_0.jpg}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/training_types_compare/random_texture_with_pts/m=5/p=8/n=13/#1_0.jpg}}{}
+\\
+\hline
+\end{tabular}
+\caption{
+  \small{\textbf{#2 #3.} Comparaison entre les différents apprentissages pour le modèle \textbf{VDPolSARF} ($m=5$, $p=8$). $\paulicomposition$}}
+ \label{figB:training_comparison_#5}
+\end{figure}
+}
+%
+%#1=boxcar
+%#2=n=5
+%#3=000
+%#4=0
+%#5=Boxcar
+\newcommand{\filtragemathcoh}[5]{
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/analyse_multi_sigs/filtering/#1/n=#2/img_multipolsar_#3_noised_filtering.png}
+ \centering
+  \caption{
+  \small{
+  \textbf{Image simulée hétérogène avec inclusion de cibles ponctuelles (#4)}. Résultat du filtre \textbf{#5} $#2\times#2$.  De gauche à droite: image caractéristique simulée avec un chatoiement -une vue ($L=1$), image filtrée, image étiquette.
+  }
+  }
+  \label{fig:img_multipolsar_000_noised_filtering_boxcar_n=5}
+\end{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\filterresultsmultisigs}[2]{
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[!htbp] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\begin{turn}{90} 
+\footnotesize{image caractéristique | étiquette} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/noised/multipolsar_#1_data_noised.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/labels/multipolsar_#1_data_signatures.png}}{}
+\\
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{VDPolSARF} ($m=5, p=8$)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/vdpolsar/n=5/img_multipolsar_#1_noised.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/vdpolsar/n=13/img_multipolsar_#1_noised.png}}{}
+\\
+\hline
+\end{tabular}
+\caption{
+  \small{\textbf{Image simulée #2.} Comparaison entre les différents filtrages - Partie 1. $\paulicomposition$}}
+ \label{fig:filter_comparison_image_#2_1}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\begin{figure}[!htbp] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Boxcar}} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/boxcar/n=5/img_multipolsar_#1_noised.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/boxcar/n=13/img_multipolsar_#1_noised.png}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Sigma Lee} (0.9, $3\times3$)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/improved_lee/n=5/img_multipolsar_#1_noised.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/improved_lee/n=13/img_multipolsar_#1_noised.png}}{}
+\\
+\hline
+\end{tabular}
+\caption{
+  \small{\textbf{Image simulée #2.} Comparaison entre les différents filtrages - Partie 2. (Improved Lee = Sigma Lee) $\paulicomposition$}}
+ \label{fig:filter_comparison_image_#2_2}
+\end{figure}
+
+}
+
+
+%%%%%%%%%%%
+
+\newcommand{\targetresultsmultisigs}[2]{
+
+\begin{figure}[!htbp] 
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\footnotesize{Taille (n)}
+&
+\footnotesize{5}
+&
+\footnotesize{13}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{VDPolSARF} ($m=5, p=8$)} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/vdpolsar/n=5/img_multipolsar_#1_noised_targets.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/vdpolsar/n=13/img_multipolsar_#1_noised_targets.png}}{}
+\\
+\hline
+\begin{turn}{90} 
+\footnotesize{\textbf{Boxcar}} 
+\end{turn}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/boxcar/n=5/img_multipolsar_#1_noised_targets.png}}{}
+& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/boxcar/n=13/img_multipolsar_#1_noised_targets.png}}{}
+\\
+\hline
+%\begin{turn}{90} 
+%\footnotesize{improved Lee (0.9, $3\times3$)} 
+%\end{turn}
+%& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/improved_lee/n=5/img_multipolsar_#1_noised_targets.png}}{}
+%& \subf{\includegraphics[width=67mm]{figures/Chap4/results/analyse_multi_sigs/compare/improved_lee/n=13/img_multipolsar_#1_noised_targets.png}}{}
+%\\
+%\hline
+\end{tabular}
+\caption{
+  \small{\textbf{Image simulée #2.} Résultats sur la préservation des cibles ponctuelles}}
+ \label{fig:filter_target_comparison_image_#1_2}
+\end{figure}
+
+}
+
+\newcommand{\filterscomparefig}[4]{
+
+\begin{figure}[!htbp] 
+\includegraphics[width=.90\textheight, angle=270,origin=c]{figures/Chap4/results/filters/plates/plate_#1_#2_n0=9_n=9_setup=#3.jpg}
+ \centering
+  \caption{
+  \footnotesize{\textbf{Comparaison entre les filtrages de l'image #2 #4}: (a) image originale, (b) modèle \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes, (c) modèle \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes avec inclusion de cibles ponctuelles, (d) filtre \textbf{Sigma Lee}  ($9 \times 9$). $\paulicomposition$.}
+  }
+  \label{fig:plate_#1_#2_#3_#4_n0=9_n=9}
+\end{figure}
+
+}
+
+\newcommand{\filterscomparefigh}[4]{
+
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/filters/plates/plate_#1_#2_n0=9_n=9_setup=#3.jpg}
+ \centering
+  \caption{
+  \small{\textbf{Comparaison entre les filtrages de l'image #2 #4}: (a) image originale, (b) modèle \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes, (c) modèle \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes avec inclusion de cibles ponctuelles, (d) filtre \textbf{Sigma Lee}  ($9 \times 9$). $\paulicomposition$.}
+  }
+  \label{fig:plate_#1_#2_#3_#4_n0=9_n=9}
+\end{figure}
+
+}
+
+
+\newcommand{\filterscomparefighaalpha}[4]{
+
+\begin{figure}[!htbp] 
+\includegraphics[width=.90\textheight, angle=270,origin=c]{figures/Chap4/results/filters/plates_haalpha/plate_#1_#2_n0=9_n=9_setup=#3.png}
+ \centering
+  \caption{
+  \small{\textbf{Comparaison entre les décomposition h-a-alpha de l'image #2 #4}: (a) modèle  \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes, (b) modèle  \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes avec inclusion de cibles ponctuelles, (c) filtre textbf{Sigma Lee}  ($9 \times 9$), (d) filtre  \textbf{Boxcar} ($9 \times 9$). \haalphacomposition}
+  }
+  \label{fig:plate_haalpha_#1_#2_#3_#4_n0=9_n=9}
+\end{figure}
+
+}
+
+\newcommand{\filterscomparefighhaalpha}[4]{
+
+\begin{figure}[!htbp] 
+\includegraphics[width=1.0\textwidth]{figures/Chap4/results/filters/plates_haalpha/plate_#1_#2_n0=9_n=9_setup=#3.png}
+ \centering
+  \caption{
+  \small{\textbf{Comparaison entre les décomposition h-a-alpha de l'image #2 #4}: (a) modèle VDPOLSARF (m=5, p=8, n=9) apprentissage sur les données hétérogènes, (b) modèle \textbf{VDPolSARF} (m=5, p=8, n=9) apprentissage sur les données hétérogènes avec inclusion de cibles ponctuelles, (c) filtre  textbf{Sigma Lee} ($9 \times 9$), (d) filtre \textbf{Boxcar} ($9 \times 9$). \haalphacomposition}
+  }
+    \label{fig:plate_haalpha_#1_#2_#3_#4_n0=9_n=9}
+\end{figure}
+
+}
+
+

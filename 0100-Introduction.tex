@@ -1,0 +1,174 @@
+\chapter{INTRODUCTION}
+
+\section{Contexte}
+
+%Les systèmes de \acrcradar à synthèse d’ouverture (\acrsarns) sont des capteurs actifs qui opèrent dans le domaine des micro-ondes du spectre électromagnétique.  Ils  fournissent leur propre source d'illumination qui leur permet d’acquérir des images de la surface de la terre jour et nuit, ainsi que sous presque toutes les conditions météorologiques. Ils émettent une onde électromagnétique  vers le sol à partir de leur antenne et mesurent la réflectivité du signal rétrodiffusé.  En comparaison avec les données optiques en télédétection, les données \acrsar présentent des avantages uniques en terme d’acquisition de données à haute résolution spatiale et temporelle de la surface terrestre. 
+
+Les systèmes de \acrcradar à synthèse d’ouverture (\acrsarns) sont des capteurs actifs qui opèrent dans le domaine des micro-ondes du spectre électromagnétique. Ils fournissent leur propre source d’illumination qui leur permet d’acquérir des images de la surface de la Terre jour et nuit, ainsi que sous presque toutes les conditions météorologiques. Ils émettent du rayonnement électromagnétique vers le sol à partir de leur antenne et mesurent la réflectivité du signal rétrodiffusé. En comparaison avec les données optiques en télédétection, les données \acrsar présentent des avantages uniques en termes d’acquisition de données à haute résolution spatiale et temporelle de la surface terrestre. 
+
+%Au cours de la dernière décennie, un nombre croissant de satellites \acrsar opérant avec une capacité polarimétrique à différentes fréquences ont été placés en orbite.  Ils mesurent la rétrodiffusion d'ondes entièrement polarisées. Les cibles peuvent réfléchir les ondes avec des intensités différentes et changer leur polarisation. Ainsi pour chaque cellule de résolution, on dispose de plusieurs mesures grâce aux combinaisons possibles de polarisation en émission et réception ce qui permet de mieux caractériser les cibles observées sur la surface terrestre. Ces différents systèmes \acrpolsar multicanaux tels que le satellite japonais ALOS/PalSAR opérant dans la bande L, le satellite canadien RADARSAT-2 opérant en bande C et le satellite TerraSAR-X allemand fonctionnant sur la bande X ont engendré un foisonnement de la recherche en télédétection sur les images \acrpolsarns. Ces systèmes utilisent ainsi une large gamme de fréquences permettant de déterminer les types de rétrodiffuseurs selon le besoin des applications. Leur utilisation est maintenant bien ancrée dans de nombreuses applications reliées à l’observation de la Terre, y compris la cartographie de la glace de mer et le routage des navires, la détection des icebergs, la surveillance marine de la pollution et des navires, la surveillance de la défense terrestre et l'identification des cibles, le suivi des cultures agricoles, le suivi des milieux humides, la cartographie géologique, la surveillance des mines, la mise à jour de la cartographie de l'utilisation des sols et des cartes topographique. 
+
+Au cours de la dernière décennie, un nombre croissant de satellites \acrsar opérant avec une capacité polarimétrique à différentes fréquences ont été placés en orbite. Ces \acrsar polarimétriques (\acrpolsarns) sont des systèmes \acrsar qui mesurent l’intensité et la phase du signal rétrodiffusée dans toutes les combinaisons possibles de polarisation linéaire horizontale et verticale en émission et réception (HH, HV, VH, VV). Ces mesures permettent de mieux caractériser le type de rétrodiffusion des cibles observées sur la surface terrestre: diffusion surfacique, diffusion volumétrique, diffusion en double ou multiple bond, etc. Ces différents systèmes \acrpolsar multicanaux (polarisation quadruple ou QuadPol) tels que le \acrsar du satellite japonais ALOS/PalSAR opérant dans la bande L, celui du satellite canadien RADARSAT-2 opérant en bande C et celui du satellite allemand TerraSAR-X fonctionnant sur la bande X ont engendré un foisonnement de la recherche en télédétection sur les images \acrpolsar et les façons dont les mêmes objets réagissent face à des ondes de fréquence et de polarisation différentes. Leur utilisation est maintenant bien ancrée dans de nombreuses applications reliées à l’observation de la Terre, y compris la cartographie de la glace de mer et le routage des navires, la détection des icebergs, la surveillance marine de la pollution et des navires, la surveillance de la défense terrestre et l’identification des cibles, le suivi des cultures agricoles, le suivi des milieux humides, la cartographie géologique, la surveillance des mines, la mise à jour de la cartographie de l’utilisation des sols et des cartes topographiques. 
+
+\section{Le problème de la recherche}
+
+%A cause de la nature cohérente du signal \acrsarns, les données \acrpolsar sont affectées par le bruit de chatoiement (\textit{speckle}) qui donne un aspect sel et poivre aux images. Par conséquent, les résultats des algorithmes de discrimination de cibles, de classification, de segmentation d’images ainsi que de détection des contours sont à leur tour affectés par le chatoiement.  L’effet du bruit peut être sévère au point de rendre inutilisable la données polarimétrique.  Ceci est vrai en particulier pour les données à monovue (\textit{single look}) qui souffrent d'un chatoiement très intense.  Une réduction du bruit est nécessaire pour améliorer l’estimation des paramètres polarimétriques pouvant être calculés à partir des images.  Cette opération constitue, dans la plupart des applications, une étape obligatoire dans les pipelines de traitement et d’analyse des images \acrpolsarns. 
+
+En raison de la nature cohérente du signal \acrsarns, les données \acrpolsar sont affectées par le bruit de chatoiement (\textit{speckle}) qui donne un aspect sel et poivre aux images.  L’effet du bruit peut être sévère au point de rendre inutilisable la donnée polarimétrique. Ceci est vrai en particulier pour les données à une vue (\textit{single look}) qui souffrent d’un chatoiement très intense. Par conséquent, les résultats des algorithmes de discrimination de cibles, de classification, de segmentation d’images ainsi que de détection des contours sont à leur tour affectés par le chatoiement. Une réduction du bruit est nécessaire pour améliorer l’estimation des paramètres polarimétriques pouvant être calculés à partir des images. Cette opération constitue, dans la plupart des applications, une étape obligatoire dans les pipelines de traitement et d’analyse des images \acrpolsarns. 
+
+
+
+%Le débruitage des images \acrsar (en intensité ou en amplitude) est un problème simple car il n’y a qu’un seul canal à traiter et la nature multiplicative du modèle statistique du chatoiement est bien connue.  Par contre dans le cas des images \acrpolsarns, le filtrage est plus compliqué. Touzi et Lopes \cite{Touzi1994} ont montré que le filtrage ne doit pas se faire à partir de la matrice de diffusion mais préférablement à partir de la matrice de covariance (ou cohérence). Cette matrice de covariance estimée à partir d’une observation  doit être obtenue dans des conditions de stationnarité et d’ergodicité (Touzi et al. \cite{Touzi2004}).  La matrice de covariance ajoute de nouveaux termes à filtrer et le modèle \acrsar ne peut pas être simplement étendu aux images \acrpolsar. Cette complication provient de la nécessité de préserver les propriétés polarimétriques et les corrélations statistiques entre les différents canaux. 
+
+%Un certain nombre de principes ont été proposés sur l’implémentation d’un filtre pour chatoiement \acrpolsarns.  Par exemple Lee et al. \cite{Lee1999} ont posé des principes de base de filtrage afin d’estimer correctement la matrice de covariance avec l’objectif de minimiser les pertes de l’information polarimétrique et spatiale:
+
+
+%\begin{enumerate}
+%\item  Le filtrage doit être adaptatif pour préserver les contours, les caractéristiques de rétrodiffusion des %cibles distribuées et ponctuelles. 
+%\item   Le filtre ne doit pas introduire de la diaphonie entre les canaux de polarisation. Chaque élément de la %matrice de covariance doit être filtré de manière indépendante.
+%\item   Chaque terme de la matrice de covariance doit être filtré de manière similaire à un traitement multivue %(multilooking) (e.g. moyennant les matrices de covariances des pixels voisins) pour préserver les propriétés %polarimétriques.
+%\item  Tous les termes de la matrice de covariance doivent être filtrés de manière identique pour conserver la %corrélation entre les différents canaux de polarisation.
+%\end{enumerate}
+
+%Lopèz-Martìnez et Fàbregas \cite{Lopez2008} ont proposé un modèle différent pour les termes croisés en émettant l’hypothèse que ceux-ci étaient affectés par un bruit multiplicatif-additif.  Ils proposent les mêmes prédicats que Lee et al. \cite{Lee1999} à l’exception du dernier.  Ils considèrent que les termes croisés de la matrice de covariance peuvent être filtrés autrement des termes en puissance diagonaux qui ne contiennent aucune information polarimétrique tout en améliorant le résultat du filtrage.  Cependant, Lee et al. \cite{Lee2015} mettent en garde que cette manière de procéder est inadéquate et que l’objectif du filtrage est de préserver les propriétés de la matrice de diffusion originale et non pas de les rehausser. On voit que l'implémentation d'un bon filtre \acrpolsar est contraint par deux facteurs:
+
+%\begin{enumerate}
+%\item  la conservation de l'information polarimétrique qui nécessite un moyennage pour réduire le chatoiement, %car une réduction insuffisante du chatoiement introduit des biais sur les paramètres estimées à partir des %données;
+
+%\item  la préservation des détails importants de l'image. 
+%\end{enumerate}
+
+%Foucher et López-Martinez \cite{Foucher2014} ont démontré que le choix de l'algorithme de filtrage des images %\acrpolsar peut influencer les résultats des applications telles que les classifications et les décompositions %polarimétriques qui dépendent étroitement de la conservation de l’information polarimétrique. Le filtrage peut %aussi influencer la conservation de détails importants comme les cibles ponctuelles .
+
+Cependant plusieurs chercheurs ont mis en évidence que le filtrage des données en QuadPol n’est pas une entreprise facile. Quelles sont les données à filtrer (brutes ou transformées) [43], quelles seraient les propriétés des filtres pour préserver les relations entre les canaux de polarisation et du coup les propriétés polarimétriques des objets visés [42], [25], [26], [29]. Les filtres polarimétriques proposés jusqu’à présent malgré leur sophistication donnent des résultats contradictoires. Foucher et López-Martinez [9] ont démontré que le choix de l’algorithme de filtrage des images \acrpolsar peut influencer les résultats des applications telles que les classifications et les décompositions polarimétriques qui dépendent étroitement de la conservation de l’information polarimétrique. Le filtrage peut aussi influencer la conservation de détails importants comme les cibles ponctuelles. 
+
+Récemment une nouvelle approche est apparue en traitement de données (images, parole, textes) visant la solution d’une multitude de problèmes dont le filtrage, la restauration d’images, la reconnaissance de la parole, la classification ou la segmentation d’images.  Cette approche est l’apprentissage profond et les réseaux de neurones à convolution (\acrconvnetns) \cite{LeCun1998}.  Les \acrconvnet sont un type spécialisé de réseau neuronal pour le traitement des données qui ont une corrélation spatiale sur une grille entre les points autour d’un voisinage, par exemple les images sont considérées comme une grille 2-D de pixels. De plus, ils utilisent la convolution au lieu de la multiplication matricielle générale dans au moins une de leurs couches neuronales.    
+
+Des travaux récents montrent que les \acrconvnet sont une alternative prometteuse pour le filtrages des images \acrsarns.  En effet par leur capacité d’apprendre un modèle optimal de filtrage, ils tendent à surpasser les approches classiques sur les images \acrsar en intensité \cite{Chierchia2017SARCNN}, \cite{Zhang2018LearningSAR-DRN}. Quelques travaux pointent dans la même direction sur le filtrage par \acrconvnet des images  \acrpolsar \cite{Foucher2017}.  Malgré les bons résultats obtenus par ces approches de filtrage par \acrconvnetns,  des questions fondamentales demeurent ouvertes sur leurs application sur les images en QuadPol: 
+
+\begin{enumerate}
+    \item Peut-on restaurer à la fois l'information polarimétrique et spatiale d'une image  \acrpolsar une vue?
+    \item Quels sont les biais introduits par le filtrage sur les paramètres polarimétriques?
+    \item Quelle est la performance du filtrage sur les cibles ponctuelles?
+    \item Quel est l'impact de l'architecture du \acrconvnet sur le filtrage par rapport aux interrogations précédentes (1), (2) et (3)?
+    \item Comment se comparent les \acrconvnet aux approches classiques pour le filtrage des images polarimétriques?
+\end{enumerate}
+
+\subsection{Les objectifs de l'étude}
+
+Le premier objectif de cette étude est d'analyser et d'évaluer l'efficacité du filtrage par \acrconvnet  des images en QuadPol une vue.  Les performances seront mesurées par différents indicateurs comprenant l'erreur relative sur l'estimation de signatures polarimétriques et des paramètres de décomposition ainsi que des mesures de distorsion sur la récupération des détails importants et la conservation des cibles ponctuelles. 
+
+Pour atteindre cet objectif nous devrons poursuivre plusieurs sous-objectifs d'ordre technique:
+\begin{enumerate}
+\item L'apprentissage d'un \acrconvnet demande tout à bord de construire un ensemble de données polarimétriques à partir d'images simulées une vue afin de créer des paires d'images pour l'apprentissage.
+\item Les approches \acrconvnet et le pipeline de l'apprentissage doivent être programmés à l'aide d'une librairie spécialement dédiée au développement d'algorithmes d'apprentissage profond afin de fonctionner rapidement sur les \acrgpu.  Dans notre cas nous utiliserons la librairie Pytorch.
+\item Les  \acrconvnet programmés seront simples afin de pourvoir mesurer facilement l'effet de différents paramètres structuraux de l'architecture sur le filtrage: la profondeur du \acrconvnet (c'est-à-dire le nombre de couches), la largeur (le nombre de filtres convolutifs par couches) et la taille des filtres.
+\end{enumerate}
+
+%Après avoir réalisé l'ensemble du pipeline de traitement nous pourrons passer à la phase expérimentale où nous comparerons les différents filtres \acrconvnet optimisés au filtres classiques polarimétriques.  La comparaison se fera en calculant les biais introduits par le filtrage dans l’estimation de certains paramètres polarimétriques sur des données simulées et en mesurant la récupération des détails importants et la conservation des cibles ponctuelles.
+
+%En dernier lieu nous vérifierons la performance des meilleurs filtres \acrconvnet produits par rapport aux filtres classiques sur des images réelles RADARSAT-2, ALOS/PalSAR et GaoFen-3.  
+
+%Cette dernière étape permettra d'évaluer si un apprentissage sur des données simulées s'applique dans le cadre d'un problème réel.  
+
+Le second objectif est d'analyser et d'évaluer le filtrage par \acrconvnet entraîné sur des données polarimétriques simulées, sur des images réelles en QuadPol RADARSAT-2, ALOS/PalSAR et GaoFen-3.  
+
+
+
+
+% Le but principal est atteint par l'entremise des sous-objectifs suivants:
+
+% \begin{enumerate}
+% \item Faire une revue de la littérature des différents \acrconvnet utilisés dans le cadre du filtrage. %\acrsarns/\acrpolsarns.
+% \item Implémenter les différents réseaux à l'aide d'une librairie dédiée spécialement au développement d'algorithmes %d'apprentissage profond.
+% \item Développer une méthode d'apprentissage des réseaux à partir de données polarimétriques simulées.
+% \item Comparer les différents réseaux entre eux en calculant les biais introduits dans l'estimation des paramètres %polarimétriques.
+% \item Comparer la performance des \acrconvnet versus les filtres de chatoiement traditionnels.  La comparaison se fait %à la fois sur des images simulées et réelles RADARSAT-2, ALOS/PalSAR et  GaoFen-3
+% \end{enumerate}
+
+\subsection{L'hypothèse de la recherche}
+
+Notre hypothèse principale de travail suppose que les filtrages polarimétriques par \acrconvnet permettent d'atténuer nettement le chatoiement tout en préservant adéquatement les détails pertinents à la condition que le \acrconvnet soit correctement optimisé.
+
+On peut décomposer l'hypothèse principale en points secondaires:
+
+\begin{enumerate}
+\item [$\bullet$] Les \acrconvnet peuvent apprendre la représentation d'un modèle du filtrage du chatoiement des données polarimétriques sans connaissance a priori;
+\item [$\bullet$] Les modèles de filtrage appris sont conservateurs du point de vue radiométrique. Ils se comportent comme des filtres avec des fenêtres d’estimation larges afin de préserver les propriétés polarimétriques sur les cibles homogènes étendues;
+\item [$\bullet$] Les modèles de filtrage appris sont adaptatifs du point de vue spatial. Ils se comportent comme des filtres avec des fenêtres d’estimation étroites afin de préserver les informations hautes fréquences importantes comme les contours, les textures et les cibles ponctuelles;
+ \item [$\bullet$] Les \acrconvnet sont des estimateurs consistants,  c'est-à-dire que l'erreur faite sur les estimations diminue lorsque la taille des l'échantillons augmente.
+\end{enumerate}
+
+\subsection{Le plan de la thèse}
+
+Le mémoire se présente en 4 chapitres excluant l'introduction.
+
+Le chapitre 2 présente une revue de la théorie de la polarimétrie appliquée à l'image satellite. Il aborde le problème fondamental du chatoiement et les notions de décompositions polarimétriques.  En seconde partie, il jette les bases théoriques pour la compréhension des réseaux de neurones à convolution appliqués à l'analyse des images.
+
+Le chapitre 3 présente la méthodologie pour la production des données nécessaires à l'apprentissage. Il décrit aussi le plan pour générer les différentes configurations des \acrconvnet à tester.  Il présente la méthodologie utilisée pour l'évaluation des modèles générés par les apprentissages.  Il donne une description des données polarimétriques réelles employées et finalement, il décrit les outils matériels nécessaires à la réalisation du projet.
+
+Le chapitre 4 présente les résultats en fonction du plan des expérimentions.  Il présente la comparaison du filtrage par \acrconvnet avec d'autres filtres couramment utilisés en polarimétrie.  Cette comparaison est basée sur des critères de performances propres à la réduction de chatoiement d’images \acrpolsarns.  Elle se fait à la fois sur les images simulées et réelles.  Le chapitre aborde aussi les problèmes d'apprentissage rencontrés.  
+
+Le dernier chapitre conclut le mémoire en discutant des limites de l'approche proposée et en suggérant des pistes pour améliorer les résultats.
+
+%\section{L'objectif et l'originalité}
+
+%Depuis 2012, les techniques d'apprentissage machine profond ont donné des performances de pointe sur divers problèmes, tels que la reconnaissance d'objets, la reconnaissance de la parole et le traitement du langage naturel et du texte (LeCun et al., \cite{LeCun2015}). Ces performances sont principalement attribuables à la croissance rapide de la taille des données disponibles pour les apprentissages (ex. Deng et al., \cite{Deng2009}), à la croissance en puissance des GPU et aux nouvelles méthodes qui facilitent la convergence des architectures profondes (Hinton et al., \cite{Hinton2006}; Glorot et al., \cite{Glorot2011}). Les applications utilisant des réseaux de neurones convolutifs (\acrconvnetns) ont profité de ces récentes avancées et affichent maintenant des résultats de pointe sur la plupart de applications en vision par ordinateur.  Gu et al. \cite{Gu2018} présentent une revue exhaustive des différents aspects des \acrconvnet et de leurs applications en classification, segmentation sémantique, estimation de la pose et dans plusieurs autres champs de recherche en vision par ordinateur. Suite à ces succès, de nombreux chercheurs en télédétection ont adapté les différentes approches issues de la vision par ordinateur à l’imagerie satellite. Zhu et al. \cite{Zhu2017} exposent la rapidité avec laquelle les \acrconvnet ont investi la sphère des applications en télédétection.  Leur revue d’envergure présente un aperçu global des applications des \acrconvnet en télédétection. Une partie de celle-ci porte sur l’application des \acrconvnet sur les images \acrsar et \acrpolsarns, en particulier sur la détection de cibles et la classification polarimétrique.
+
+ 
+%Les techniques basées sur les \acrconvnet qui sont utilisées pour le filtrage sont issues des applications en restauration d'image ou pour du transfert de style. Ces techniques suivent un schéma d’exécution semblable: calculer une fonction de représentation entre une image d'entrée vers une image cible.  La fonction transforme l'image d'entrée vers l'image cible  par l’intermédiaire d’un modèle appris sur un corpus de paires d’images.  La tâche est vue comme un problème d’optimisation i.e qu'il faut minimiser la différence entre la sortie du modèle correctif et la vérité terrain par rapport à une fonction de perte. Parmi les applications qui exploitent un tel schéma d'exécution, notons les approches de superrésolution \cite{Dong2016} \cite{Kim_2016_VDSR}, de pan-sharpening \cite{Scarpa_2018}, de corrections atmosphériques \cite{Zhu_2018} et de filtrages des images en vision par ordinateur \cite{Zhang2017}.  L’avantage des \acrconvnet est d’apprendre seulement à partir des données, les paramètres optimaux de la restauration sans ajustement extérieur ou de connaissance a priori des statistiques du bruit à corriger.  
+
+%Le filtrage des images \acrsar à l'aide de \acrconvnet est un domaine d'étude récent et seulement quelques publications démontrent le grand potentiel de ces nouvelles techniques. Cherchia et al. \cite{Chierchia2017SARNCN} et Zhang et al. \cite{Zhang2018LearningSAR-DRN} présentent tous deux des algorithmes  \acrconvnet appliqués aux images \acrsar en intensité qui par leurs résultats surpassent les techniques conventionnelles en terme de restauration. Dans le cas de l'imagerie \acrpolsarns, un seul article semble directement s'intéresser au filtrage \acrpolsar (Foucher et al. \cite{Foucher2017}).  Les auteurs explorent en particulier l'impact du filtrage sur les décompositions polarimétriques.  Les résultats qualitatifs semblent données de meilleurs résultats que les filtres \acrpolsar traditionnels (filtre de Lee).
+
+%Dans le cadre de cette recherche, nous adapterons différentes architectures de \acrconvnet spécifiquement pour l'estimation de la matrice de covariance polarimétrique.  Ce qui n'a presque pas été exploré en détail comme le montre la littérature. 
+
+%\subsection{Le but de l'étude}
+
+%Malgré l'excellence des résultats obtenus par les approches de filtrage à \acrconvnetns, une question qui n'est pas résolue est la justification d'une architecture neuronale versus une autre.  L'objectif principal de ce mémoire de maîtrise est de développer une stratégie pour déterminer l'impact de la sélection d'une architecture par rapport à une autre par l'intérim de l'estimation des biais introduits par le filtrage sur les paramètres polarimétriques et par la performance de la restauration des détails.
+
+%Le but principal est atteint par l'entremise des sous-objectifs suivants:
+
+%\begin{enumerate}
+%\item Faire une revue de la littérature des différents \acrconvnet utilisés dans le cadre du filtrage. %\acrsarns/\acrpolsarns.
+%\item Concevoir une architecture \acrconvnet variable et incrémentale qui permet de tester l'effet sur le filtrage de %certains paramètres de structuration du réseau. 
+%\item Implémenter les différents réseaux à l'aide d'une librairie dédiée spécialement au développement d'algorithmes %d'apprentissage profond.
+%\item Développer une méthode d'apprentissage des réseaux à partir de données polarimétriques simulées.
+%\item Comparer les différents réseaux entre eux en calculant les biais introduits dans l'estimation des paramètres %polarimétriques.
+%\item Comparer la performance des \acrconvnet versus les filtres de chatoiement traditionnels.  La comparaison se fait %à la fois sur des images simulées et réelles RADARSAT-2, ALOS/PalSAR et  GaoFen-3
+%\end{enumerate}
+
+%\subsection{Le plan de la thèse}
+
+%Le mémoire se présente en 4 chapitres excluant l'introduction.
+
+%Le chapitre 2 présente une revue de la théorie de la polarimétrie appliquée à l'image satellite. Il aborde le problème fondamental du chatoiement et les notions de décompositions polarimétriques.  En seconde partie, il jette les bases théoriques pour la compréhension des réseaux de neurones à convolution appliqués à l'analyse des images.
+
+%Le chapitre 3 présente la méthodologie pour la production des données nécessaires à l'apprentissage. Il décrit aussi le plan pour générer les différentes configurations des \acrconvnet testés.  Il présente la méthodologie utilisée pour l'évaluation des modèles générés par les apprentissages.  Il donne une description des données polarimétriques réelles employées et finalement, il décrit les outils matériels nécessaires à la réalisation du projet.
+
+%Le chapitre 4 présente les résultats en fonction du plan des expérimentions.  Il présente la comparaison du filtrage avec d'autres filtres couramment utilisés en polarimétrie.  Cette comparaison est basée sur des critères de performances propres à la réduction de chatoiement d’images \acrpolsarns.  Elle se fait à la fois sur les images simulées et réelles.  Le chapitre aborde aussi les problèmes d'apprentissage rencontrés et leurs solutions.  
+
+%Le dernier chapitre conclut le mémoire en discutant des limites de l'approche proposée et en suggérant des pistes pour %améliorer les résultats.
+
+
+
+%\subsection{L'hypothèse de la recherche}
+
+%Notre hypothèse principale de travail suppose que les filtres polarimétriques utilisant les \acrconvnet permettent d'atténuer nettement le chatoiement tout en préservant adéquatement les détails pertinents s'ils sont correctement optimisés.
+
+%On peut décomposer l'hypothèse principale selon les points suivants:
+
+%\begin{enumerate}
+%\item [$\bullet$] Les réseaux peuvent apprendre la représentation d'un modèle de réduction du chatoiement des matrices %de covariance sans connaissance a priori;
+%\item [$\bullet$] Les filtres appris sont conservateurs du point de vue radiométrique. Ils se comportent comme des %filtres avec des fenêtres d’estimation larges afin de préserver les propriétés polarimétriques sur les cibles homogènes %étendues;
+%\item [$\bullet$] Les filtres appris sont adaptatifs du point de vue spatial. Ils se comportent comme des filtres avec %des fenêtres d’estimation étroites afin de préserver les informations hautes fréquences importantes comme les contours, %les textures et les cibles ponctuelles;
+% \item [$\bullet$] Les réseaux sont des estimateurs consistants de la matrice de covariance bruitée.
+%\end{enumerate}
+
+%Une seconde hypothèse, qui découle de la capacité des \acrconvnet d'apprendre les paramètres optimaux de la réduction du chatoiement en fonction des données, est que les résultats du filtrage sont supérieurs aux autres approches traditionnels. La réalisation de cette hypothèse se perçois sur la mesure des biais radiométriques et spatiaux.
+
+
+
+
+
+
+
